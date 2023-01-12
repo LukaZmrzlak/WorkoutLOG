@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">WorkoutLOG</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="your_username">Username</string>
+    <string name="your_name">Name</string>
+    <string name="e_mail">Email</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_surname">Surname</string>
 </resources>
