@@ -9,4 +9,12 @@
     <string name="e_mail">Email</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_surname">Surname</string>
+    <string name="new_workout">New Workout</string>
+    <string name="logout">Logout</string>
+    <string name="cardio">Cardio</string>
+    <string name="home">Home</string>
+    <string name="new_workout_title">Start a new workout</string>
+    <string name="statistics">Statistics</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
