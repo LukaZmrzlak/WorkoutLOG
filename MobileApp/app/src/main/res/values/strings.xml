@@ -13,8 +13,22 @@
     <string name="logout">Logout</string>
     <string name="cardio">Cardio</string>
     <string name="home">Home</string>
-    <string name="new_workout_title">Start a new workout</string>
+    <string name="new_workout_title">Save a new workout</string>
     <string name="statistics">Statistics</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fitness">Fitness</string>
+    <string name="history">History</string>
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="save">Save</string>
+    <string name="measurements">Measurements</string>
+    <string name="setting">Setting</string>
+    <string name="logo">Logo</string>
+    <string name="date">Date</string>
+    <string name="duration">Duration</string>
+    <string name="distance">Distance</string>
+    <string name="your_experience">Your experience</string>
+    <string name="weather">Weather</string>
+    <string name="notes">Notes</string>
 </resources>

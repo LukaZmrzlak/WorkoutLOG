@@ -14,7 +14,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        configureLoginButton();
         configureRegisterButton();
+    }
+    private void configureLoginButton()
+    {
+        Button loginButton = (Button) findViewById(R.id.btn_login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                /* IF LOGIN SUCCESSFUL */
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            }
+        });
     }
 
     private void configureRegisterButton()

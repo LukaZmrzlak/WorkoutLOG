@@ -30,7 +30,8 @@
         android:padding="15dp"
         android:inputType="textPersonName"
         android:background="@drawable/background"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="username"/>
 
     <EditText
         android:id="@+id/et_name"
@@ -44,7 +45,8 @@
         android:padding="15dp"
         android:inputType="textPersonName"
         android:background="@drawable/background"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="name"/>
 
     <EditText
         android:id="@+id/et_surname"
@@ -58,7 +60,8 @@
         android:padding="15dp"
         android:inputType="textPersonName"
         android:background="@drawable/background"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/et_email"
@@ -72,7 +75,8 @@
         android:padding="15dp"
         android:inputType="textEmailAddress"
         android:background="@drawable/background"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="emailAddress"/>
 
     <EditText
         android:id="@+id/et_password"
@@ -86,7 +90,8 @@
         android:padding="15dp"
         android:inputType="textPassword"
         android:background="@drawable/background"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="password"/>
 
     <EditText
         android:id="@+id/et_re_password"
@@ -100,7 +105,8 @@
         android:layout_below="@id/et_password"
         android:inputType="textPassword"
         android:background="@drawable/background"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="password"/>
 
     <Button
         android:id="@+id/btn_register"

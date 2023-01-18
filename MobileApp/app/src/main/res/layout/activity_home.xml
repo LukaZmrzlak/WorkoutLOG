@@ -6,38 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageButton
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_settings_24"
+        android:background="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/setting"/>
+
+    <ImageButton
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_logout_24"
+        android:background="@color/white"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/logout"/>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_above="@+id/cardio"
         android:text="@string/new_workout_title"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/new_workout"
+        android:id="@+id/cardio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_above="@id/fitness"
         android:background="@drawable/button"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:textColor="@android:color/white"
-        android:text="@string/new_workout"/>
+        android:text="@string/cardio"/>
 
     <Button
-        android:id="@+id/statistics"
+        android:id="@+id/fitness"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/new_workout"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/button"
-        android:text="@string/statistics"
+        android:text="@string/fitness"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fitness"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button"
+        android:text="@string/history"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>

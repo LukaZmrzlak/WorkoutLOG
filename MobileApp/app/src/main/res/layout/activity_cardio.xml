@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/cardio"
+        android:textAlignment="center"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/date"
+        android:text="@string/date"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:hint="@string/date"
+        android:inputType="date"
+        android:background="@drawable/background"
+        android:layout_below="@id/title"
+        android:padding="15dp"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/duration_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/duration"
+        android:layout_alignStart="@id/duration"
+        android:text="@string/duration"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/duration"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="@string/duration"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/date"
+        android:layout_toEndOf="@id/distance"
+        android:padding="15dp"
+        android:inputType="time"
+        android:background="@drawable/background"
+        android:textSize="15sp"
+        android:importantForAutofill="no"/>
+
+    <TextView
+        android:id="@+id/distance_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/distance"
+        android:layout_above="@id/distance"
+        android:text="@string/distance"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/distance"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:hint="@string/distance"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_below="@id/date"
+        android:padding="15dp"
+        android:inputType="numberDecimal"
+        android:background="@drawable/background"
+        android:textSize="15sp"
+        android:importantForAutofill="no"/>
+
+    <TextView
+        android:id="@+id/experience_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/experience"
+        android:text="@string/your_experience"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/experience"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/your_experience"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_below="@id/distance"
+        android:padding="15dp"
+        android:inputType="text"
+        android:background="@drawable/background"
+        android:textSize="15sp"
+        android:importantForAutofill="no"/>
+
+    <TextView
+        android:id="@+id/weather_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/weather"
+        android:text="@string/weather"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/weather"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/weather"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_below="@id/experience"
+        android:padding="15dp"
+        android:inputType="text"
+        android:background="@drawable/background"
+        android:textSize="15sp"
+        android:importantForAutofill="no"/>
+
+    <TextView
+        android:id="@+id/notes_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/notes"
+        android:text="@string/notes"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/notes"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        android:padding="15dp"
+        android:layout_below="@id/weather"
+        android:inputType="text"
+        android:background="@drawable/background"
+        android:textSize="15sp"
+        android:importantForAutofill="no"/>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/notes"
+        android:textColor="@android:color/white"
+        android:text="@string/save"/>
+
+</RelativeLayout>
