@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="50dp"
-        android:text="@string/cardio"
+        android:text="@string/fitness"
         android:textAlignment="center"
         android:textSize="50sp" />
 
@@ -44,144 +44,139 @@
         android:importantForAutofill="no" />
 
     <TextView
-        android:id="@+id/duration_title"
+        android:id="@+id/exercise_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/duration"
-        android:layout_alignStart="@id/duration"
-        android:text="@string/duration"
+        android:layout_above="@id/exercise"
+        android:text="@string/exercise"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/duration"
-        android:layout_width="150dp"
+        android:id="@+id/exercise"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/duration"
+        android:hint="@string/exercise"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
         android:layout_below="@id/date"
-        android:layout_alignParentEnd="true"
         android:padding="15dp"
-        android:inputType="time"
+        android:inputType="text"
         android:background="@drawable/background"
         android:textSize="15sp"
         android:importantForAutofill="no"/>
 
     <TextView
-        android:id="@+id/distance_title"
+        android:id="@+id/reps_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/distance"
-        android:layout_above="@id/distance"
-        android:text="@string/distance"
+        android:layout_above="@id/reps"
+        android:layout_alignStart="@id/reps"
+        android:text="@string/reps"
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/distance"
+        android:id="@+id/reps"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:hint="@string/distance"
+        android:hint="@string/reps"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="50dp"
-        android:layout_below="@id/date"
+        android:layout_below="@id/exercise"
+        android:layout_alignParentEnd="true"
+        android:padding="15dp"
+        android:inputType="number"
+        android:background="@drawable/background"
+        android:textSize="15sp"
+        android:importantForAutofill="no"/>
+
+    <TextView
+        android:id="@+id/kg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/kg"
+        android:layout_above="@id/kg"
+        android:text="@string/kg"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/kg"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:hint="@string/kg"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="80dp"
+        android:layout_below="@id/exercise"
         android:padding="15dp"
         android:inputType="numberDecimal"
         android:background="@drawable/background"
         android:textSize="15sp"
         android:importantForAutofill="no"/>
 
-    <TextView
-        android:id="@+id/experience_title"
+    <ImageButton
+        android:id="@+id/check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/experience"
-        android:text="@string/your_experience"
+        android:src="@drawable/ic_baseline_check_circle_24"
+        android:background="@color/white"
+        android:layout_below="@id/reps"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/sets_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sets"
+        android:text="@string/sets"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:textSize="20sp"/>
 
-    <EditText
-        android:id="@+id/experience"
+    <ListView
+        android:id="@+id/sets"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/your_experience"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="50dp"
-        android:layout_below="@id/distance"
-        android:padding="15dp"
-        android:inputType="text"
-        android:background="@drawable/background"
-        android:textSize="15sp"
-        android:importantForAutofill="no"/>
-
-    <TextView
-        android:id="@+id/weather_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/weather"
-        android:text="@string/weather"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/weather"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/weather"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="50dp"
-        android:layout_below="@id/experience"
-        android:padding="15dp"
-        android:inputType="text"
-        android:background="@drawable/background"
-        android:textSize="15sp"
-        android:importantForAutofill="no"/>
-
-    <TextView
-        android:id="@+id/notes_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/notes"
-        android:text="@string/notes"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/notes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/notes"
+        android:layout_height="100dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="50dp"
         android:padding="15dp"
-        android:layout_below="@id/weather"
-        android:inputType="text"
-        android:background="@drawable/background"
+        android:layout_below="@id/kg"
         android:textSize="15sp"
         android:importantForAutofill="no"/>
 
     <Button
         android:id="@+id/save"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@id/notes"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@id/sets"
+        android:layout_alignParentStart="true"
         android:textColor="@android:color/white"
         android:text="@string/save"/>
+
+    <Button
+        android:id="@+id/new_exercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_below="@id/sets"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/white"
+        android:text="@string/new_exercise"/>
 
 </RelativeLayout>

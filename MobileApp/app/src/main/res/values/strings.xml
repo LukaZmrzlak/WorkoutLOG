@@ -31,4 +31,9 @@
     <string name="your_experience">Your experience</string>
     <string name="weather">Weather</string>
     <string name="notes">Notes</string>
+    <string name="exercise">Exercise</string>
+    <string name="reps">Reps</string>
+    <string name="kg">kg</string>
+    <string name="sets">Sets</string>
+    <string name="new_exercise">New</string>
 </resources>
