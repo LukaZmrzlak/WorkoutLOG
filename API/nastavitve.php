@@ -28,7 +28,14 @@ switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno de
 		break;
 		
 	case 'POST':
-        dodaj_nastavitve();
+		if(!empty($_GET["token"]))
+		{
+			dodaj_nastavitve($_GET["token"]);
+		}
+		else
+		{
+			http_response_code(400);	// Bad Request
+		}
 		break;
 
 	case 'PUT':
@@ -54,7 +61,6 @@ function nastavitve_uporabnika($token)
 	global $zbirka;
 	$token = mysqli_escape_string($zbirka, $token);
 	$secret = 'sec!ReT423*&';
-	$odgovor=array();
 
 	// Validate token and retrieve payload
 	if(Token::validate($token,$secret)){
@@ -66,58 +72,63 @@ function nastavitve_uporabnika($token)
 			$poizvedba="SELECT spol, starost, teza, visina FROM nastavitve WHERE vzdevek = '$vzdevek'";
 			
 			$result=mysqli_query($zbirka, $poizvedba);
-	
-			while($vrstica=mysqli_fetch_assoc($result))
+
+			if(mysqli_num_rows($result)>0) 
 			{
-				$odgovor[]=$vrstica;
+				$odgovor=mysqli_fetch_assoc($result);
+
+				http_response_code(200);		//OK
+				echo json_encode($odgovor);
 			}
-			
-			http_response_code(200);		//OK
-			echo json_encode($odgovor);
-		}
-		else
-		{
-			http_response_code(404);	// Not Found
+			else
+			{
+				http_response_code(404);	// Not Found
+			}
 		}
 	}
 }
 
-function dodaj_nastavitve()
+function dodaj_nastavitve($token)
 {
 	global $zbirka, $DEBUG;
-	
+	$token = mysqli_escape_string($zbirka, $token);
+	$secret = 'sec!ReT423*&';
 	$podatki = json_decode(file_get_contents('php://input'), true);
 
-	if(isset($podatki["vzdevek"], $podatki["spol"], $podatki["starost"],$podatki["teza"], $podatki["visina"]))
-	{
-		if(uporabnik_obstaja($podatki["vzdevek"]))	//preprecimo napako zaradi krsitve FK 
+	// Validate token and retrieve payload
+	if(Token::validate($token,$secret)){
+		$payload = Token::getPayLoad($token,$secret);
+		$vzdevek = $payload["user_id"];
+		if(isset($podatki["spol"], $podatki["starost"],$podatki["teza"], $podatki["visina"]))
 		{
-			$vzdevek = mysqli_escape_string($zbirka, $podatki["vzdevek"]);
-			$spol = mysqli_escape_string($zbirka, $podatki["spol"]);
-			$starost = mysqli_escape_string($zbirka, $podatki["starost"]);
-            $teza = mysqli_escape_string($zbirka, $podatki["teza"]);
-            $visina = mysqli_escape_string($zbirka, $podatki["visina"]);
-				
-			$poizvedba="INSERT INTO nastavitve (vzdevek, spol, starost, teza, visina) VALUES ('$vzdevek', '$spol', '$starost', '$teza', '$visina')";
-
-			if(mysqli_query($zbirka, $poizvedba))
+			if(uporabnik_obstaja($vzdevek))	//preprecimo napako zaradi krsitve FK 
 			{
-				http_response_code(201);	// Created
+				$spol = mysqli_escape_string($zbirka, $podatki["spol"]);
+				$starost = mysqli_escape_string($zbirka, $podatki["starost"]);
+				$teza = mysqli_escape_string($zbirka, $podatki["teza"]);
+				$visina = mysqli_escape_string($zbirka, $podatki["visina"]);
+					
+				$poizvedba="INSERT INTO nastavitve (vzdevek, spol, starost, teza, visina) VALUES ('$vzdevek', '$spol', '$starost', '$teza', '$visina')";
+
+				if(mysqli_query($zbirka, $poizvedba))
+				{
+					http_response_code(201);	// Created
+				}
+				else
+				{
+					http_response_code(500);	// Internal Server Error
+
+					if($DEBUG)
+					{
+						pripravi_odgovor_napaka(mysqli_error($zbirka));
+					}
+				}
 			}
 			else
 			{
-				http_response_code(500);	// Internal Server Error
-
-				if($DEBUG)
-				{
-					pripravi_odgovor_napaka(mysqli_error($zbirka));
-				}
+				http_response_code(409);	// Conflict
+				pripravi_odgovor_napaka("Uporabnik ne obstaja!");
 			}
-		}
-		else
-		{
-			http_response_code(409);	// Conflict
-			pripravi_odgovor_napaka("Uporabnik ne obstaja!");
 		}
 	}
 	else
