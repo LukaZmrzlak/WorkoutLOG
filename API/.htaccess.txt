@@ -1,7 +1,0 @@
-RewriteEngine On 
-
-
-<Files orodja.php>
-Order allow,deny
-Deny from all
-</Files>

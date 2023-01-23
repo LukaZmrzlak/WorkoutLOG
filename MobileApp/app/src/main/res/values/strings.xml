@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">WorkoutLOG</string>
     <string name="username">Username</string>
+    <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -36,4 +37,15 @@
     <string name="kg">kg</string>
     <string name="sets">Sets</string>
     <string name="new_exercise">New</string>
+    <string name="network_error">Network error!</string>
+    <string name="login_successfully">Login successful!</string>
+    <string name="login_wrong_password">Wrong password!</string>
+    <string name="login_wrong_username">User not found!</string>
+    <string name="service_error">Service error!</string>
+    <string name="register_successfully">Register successful!</string>
+    <string name="register_username_taken">Username already taken!</string>
+    <string name="login_error">Login unsuccessful!</string>
+    <string name="URL_register">http://10.0.2.2/WorkoutLOG/API/uporabniki/</string>
+    <string name="URL_login">http://10.0.2.2/WorkoutLOG/API/login/</string>
+    <string name="empty_fields_error">Fill in empty fields!</string>
 </resources>

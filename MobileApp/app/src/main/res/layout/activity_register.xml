@@ -19,7 +19,7 @@
         android:textSize="50sp" />
 
     <EditText
-        android:id="@+id/et_username"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/your_username"
@@ -34,14 +34,14 @@
         android:autofillHints="username"/>
 
     <EditText
-        android:id="@+id/et_name"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/your_name"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/et_username"
+        android:layout_below="@id/username"
         android:padding="15dp"
         android:inputType="textPersonName"
         android:background="@drawable/background"
@@ -49,14 +49,14 @@
         android:autofillHints="name"/>
 
     <EditText
-        android:id="@+id/et_surname"
+        android:id="@+id/surname"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/your_surname"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/et_name"
+        android:layout_below="@id/name"
         android:padding="15dp"
         android:inputType="textPersonName"
         android:background="@drawable/background"
@@ -64,14 +64,14 @@
         android:importantForAutofill="no"/>
 
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/e_mail"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/et_surname"
+        android:layout_below="@id/surname"
         android:padding="15dp"
         android:inputType="textEmailAddress"
         android:background="@drawable/background"
@@ -79,34 +79,20 @@
         android:autofillHints="emailAddress"/>
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/password"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@id/et_email"
+        android:layout_marginBottom="50dp"
+        android:layout_below="@id/email"
         android:padding="15dp"
         android:inputType="textPassword"
         android:background="@drawable/background"
         android:textSize="15sp"
         android:autofillHints="password"/>
 
-    <EditText
-        android:id="@+id/et_re_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/re_type_password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="50dp"
-        android:padding="15dp"
-        android:layout_below="@id/et_password"
-        android:inputType="textPassword"
-        android:background="@drawable/background"
-        android:textSize="15sp"
-        android:autofillHints="password"/>
 
     <Button
         android:id="@+id/btn_register"
@@ -116,7 +102,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:layout_below="@id/et_re_password"
+        android:layout_below="@id/password"
         android:textColor="@android:color/white"
         android:text="@string/register"/>
 

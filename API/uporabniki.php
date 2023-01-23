@@ -3,6 +3,7 @@ $DEBUG = true;							// Priprava podrobnejših opisov napak (med testiranjem)
 
 include("orodja.php"); 					// Vključitev 'orodij'
 
+
 $zbirka = dbConnect();					// Pridobitev povezave s podatkovno zbirko
 
 header('Content-Type: application/json');	// Nastavimo MIME tip vsebine odgovora
@@ -14,7 +15,7 @@ switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo u
 	case 'GET':
 		if(!empty($_GET["vzdevek"]))
 		{
-			pridobi_uporabnika($_GET["vzdevek"]);		// Če odjemalec posreduje vzdevek, mu vrnemo podatke izbranega uporabnika
+			pridobi_uporabnika($_GET["vzdevek"]);
 		}
 		else
 		{
