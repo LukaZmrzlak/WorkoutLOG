@@ -1,0 +1,7 @@
+{
+    "name": "zmrzl/api",
+    "type": "project",
+    "require": {
+        "rbdwllr/reallysimplejwt": "^5.0"
+    }
+}

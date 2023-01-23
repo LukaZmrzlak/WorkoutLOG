@@ -3,6 +3,9 @@ $DEBUG = true;
 
 include("orodja.php"); 			// Vključitev 'orodij'
 
+require 'vendor/autoload.php';
+use ReallySimpleJWT\Token;
+
 $zbirka = dbConnect();			//Pridobitev povezave s podatkovno zbirko
 
 header('Content-Type: application/json');
@@ -14,9 +17,9 @@ header("Expires: 0"); // Proxies.
 switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno dejanje nad virom
 {
 	case 'GET':
-		if(!empty($_GET["vzdevek"]))
+		if(!empty($_GET["token"]))
 		{
-			fitnes_uporabnika($_GET["vzdevek"]);
+			fitnes_uporabnika($_GET["token"]);
 		}
 		else
 		{
@@ -25,8 +28,15 @@ switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno de
 		break;
 		
 	case 'POST':
-			dodaj_fitnes();
-		break;
+			if(!empty($_GET["token"]))
+			{
+				dodaj_fitnes($_GET["token"]);
+			}
+			else
+			{
+				http_response_code(400);	// Bad Request
+			}
+			break;
 		
 	default:
 		http_response_code(405);	//Method Not Allowed
@@ -35,74 +45,83 @@ switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno de
 
 mysqli_close($zbirka);					// Sprostimo povezavo z zbirko
 
-function fitnes_uporabnika($vzdevek)
+function fitnes_uporabnika($token)
 {
 	global $zbirka;
-	$vzdevek=mysqli_escape_string($zbirka, $vzdevek);
+	$token = mysqli_escape_string($zbirka, $token);
+	$secret = 'sec!ReT423*&';
 	$odgovor=array();
-	
-	if(uporabnik_obstaja($vzdevek))
-	{
-		$poizvedba="SELECT datum, vaja, ponovitve, teza, zapiski FROM fitnes WHERE vzdevek = '$vzdevek'";
-		
-		$result=mysqli_query($zbirka, $poizvedba);
-
-		while($vrstica=mysqli_fetch_assoc($result))
+	// Validate token and retrieve payload
+	if(Token::validate($token,$secret)){
+		$payload = Token::getPayLoad($token,$secret);
+		$vzdevek = $payload["user_id"];
+		if(uporabnik_obstaja($vzdevek))
 		{
-			$odgovor[]=$vrstica;
+			$poizvedba="SELECT datum, vaja, ponovitve, teza, zapiski FROM fitnes WHERE vzdevek = '$vzdevek'";
+			
+			$result=mysqli_query($zbirka, $poizvedba);
+
+			while($vrstica=mysqli_fetch_assoc($result))
+			{
+				$odgovor[]=$vrstica;
+			}
+			
+			http_response_code(200);		//OK
+			echo json_encode($odgovor);
 		}
-		
-		http_response_code(200);		//OK
-		echo json_encode($odgovor);
-	}
-	else
-	{
-		http_response_code(404);	// Not Found
+		else
+		{
+			http_response_code(404);	// Not Found
+		}
 	}
 }
 
-function dodaj_fitnes()
+function dodaj_fitnes($token)
 {
 	global $zbirka, $DEBUG;
-	
+	$token = mysqli_escape_string($zbirka, $token);
+	$secret = 'sec!ReT423*&';
 	$podatki = json_decode(file_get_contents('php://input'), true);
 	
-	if(isset($podatki["vzdevek"], $podatki["datum"], $podatki["vaja"],$podatki["ponovitve"], $podatki["teza"], $podatki["zapiski"]))
-	{
-		if(uporabnik_obstaja($podatki["vzdevek"]))	//preprecimo napako zaradi krsitve FK 
+	if(Token::validate($token,$secret)){
+		$payload = Token::getPayLoad($token,$secret);
+		$vzdevek = $payload["user_id"];
+		if(isset($podatki["datum"], $podatki["vaja"],$podatki["ponovitve"], $podatki["teza"], $podatki["zapiski"]))
 		{
-			$vzdevek = mysqli_escape_string($zbirka, $podatki["vzdevek"]);
-			$datum = mysqli_escape_string($zbirka, $podatki["datum"]);
-			$vaja = mysqli_escape_string($zbirka, $podatki["vaja"]);
-            $ponovitve = mysqli_escape_string($zbirka, $podatki["ponovitve"]);
-            $teza = mysqli_escape_string($zbirka, $podatki["teza"]);
-            $zapiski = mysqli_escape_string($zbirka, $podatki["zapiski"]);
-				
-			$poizvedba="INSERT INTO fitnes (vzdevek, datum, vaja, ponovitve, teza, zapiski) VALUES ('$vzdevek', '$datum', '$vaja', '$ponovitve', '$teza', '$zapiski')";
-
-			if(mysqli_query($zbirka, $poizvedba))
+			if(uporabnik_obstaja($vzdevek))	//preprecimo napako zaradi krsitve FK 
 			{
-				http_response_code(201);	// Created
+				$datum = mysqli_escape_string($zbirka, $podatki["datum"]);
+				$vaja = mysqli_escape_string($zbirka, $podatki["vaja"]);
+				$ponovitve = mysqli_escape_string($zbirka, $podatki["ponovitve"]);
+				$teza = mysqli_escape_string($zbirka, $podatki["teza"]);
+				$zapiski = mysqli_escape_string($zbirka, $podatki["zapiski"]);
+					
+				$poizvedba="INSERT INTO fitnes (vzdevek, datum, vaja, ponovitve, teza, zapiski) VALUES ('$vzdevek', '$datum', '$vaja', '$ponovitve', '$teza', '$zapiski')";
+
+				if(mysqli_query($zbirka, $poizvedba))
+				{
+					http_response_code(201);	// Created
+				}
+				else
+				{
+					http_response_code(500);	// Internal Server Error
+
+					if($DEBUG)
+					{
+						pripravi_odgovor_napaka(mysqli_error($zbirka));
+					}
+				}
 			}
 			else
 			{
-				http_response_code(500);	// Internal Server Error
-
-				if($DEBUG)
-				{
-					pripravi_odgovor_napaka(mysqli_error($zbirka));
-				}
+				http_response_code(409);	// Conflict
+				pripravi_odgovor_napaka("Uporabnik ne obstaja!");
 			}
 		}
 		else
 		{
-			http_response_code(409);	// Conflict
-			pripravi_odgovor_napaka("Uporabnik ne obstaja!");
+			http_response_code(400);	// Bad Request
 		}
-	}
-	else
-	{
-		http_response_code(400);	// Bad Request
 	}
 }
 ?>
