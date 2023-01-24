@@ -57,7 +57,7 @@ function fitnes_uporabnika($token)
 		$vzdevek = $payload["user_id"];
 		if(uporabnik_obstaja($vzdevek))
 		{
-			$poizvedba="SELECT datum, vaja, ponovitve, teza, zapiski FROM fitnes WHERE vzdevek = '$vzdevek'";
+			$poizvedba="SELECT datum, vaja, seti FROM fitnes WHERE vzdevek = '$vzdevek'";
 			
 			$result=mysqli_query($zbirka, $poizvedba);
 
@@ -86,17 +86,15 @@ function dodaj_fitnes($token)
 	if(Token::validate($token,$secret)){
 		$payload = Token::getPayLoad($token,$secret);
 		$vzdevek = $payload["user_id"];
-		if(isset($podatki["datum"], $podatki["vaja"],$podatki["ponovitve"], $podatki["teza"], $podatki["zapiski"]))
+		if(isset($podatki["datum"], $podatki["vaja"],$podatki["seti"]))
 		{
 			if(uporabnik_obstaja($vzdevek))	//preprecimo napako zaradi krsitve FK 
 			{
 				$datum = mysqli_escape_string($zbirka, $podatki["datum"]);
 				$vaja = mysqli_escape_string($zbirka, $podatki["vaja"]);
-				$ponovitve = mysqli_escape_string($zbirka, $podatki["ponovitve"]);
-				$teza = mysqli_escape_string($zbirka, $podatki["teza"]);
-				$zapiski = mysqli_escape_string($zbirka, $podatki["zapiski"]);
+				$seti = mysqli_escape_string($zbirka, $podatki["seti"]);
 					
-				$poizvedba="INSERT INTO fitnes (vzdevek, datum, vaja, ponovitve, teza, zapiski) VALUES ('$vzdevek', '$datum', '$vaja', '$ponovitve', '$teza', '$zapiski')";
+				$poizvedba="INSERT INTO fitnes (vzdevek, datum, vaja, seti) VALUES ('$vzdevek', '$datum', '$vaja', '$seti')";
 
 				if(mysqli_query($zbirka, $poizvedba))
 				{

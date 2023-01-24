@@ -30,9 +30,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         String token = MainActivity.token;
         String urlService = getResources().getString(R.string.URL_settings);
-        SettingsAPI settingsAPI = new SettingsAPI(token,urlService, this);
+        SettingsAPIGet settingsAPIGet = new SettingsAPIGet(token,urlService, this);
         AsyncTaskExecutor executor = new AsyncTaskExecutor();
-        executor.execute(settingsAPI, new AsyncTaskExecutor.Callback<String>() {
+        executor.execute(settingsAPIGet, new AsyncTaskExecutor.Callback<String>() {
             @Override
             public void onComplete(String result) {
                 etGender.setText(genderTemp);

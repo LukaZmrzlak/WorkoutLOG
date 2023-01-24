@@ -48,6 +48,8 @@
     <string name="URL_register">http://10.0.2.2/WorkoutLOG/API/uporabniki/</string>
     <string name="URL_login">http://10.0.2.2/WorkoutLOG/API/login/</string>
     <string name="URL_settings">http://10.0.2.2/WorkoutLOG/API/nastavitve</string>
+    <string name="URL_cardio">http://10.0.2.2/WorkoutLOG/API/teki</string>
+    <string name="URL_fitness">http://10.0.2.2/WorkoutLOG/API/fitnes</string>
     <string name="empty_fields_error">Fill in empty fields!</string>
     <string name="fetch_successfully">Successful fetch</string>
     <string name="unexpected_error">Unexpected error!</string>

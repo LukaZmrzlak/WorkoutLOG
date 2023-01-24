@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                MainActivity.isUserLoggedIn = false;
                 startActivity(new Intent(HomeActivity.this, LoginActivity.class));
             }
         });

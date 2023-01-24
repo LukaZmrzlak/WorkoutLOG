@@ -16,11 +16,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Callable;
 
-public class SettingsAPI implements Callable<String> {
+public class SettingsAPIGet implements Callable<String> {
     private final String urlService, token;
     private final Activity callerActivity;
 
-    public SettingsAPI(String token, String urlService, Activity callerActivity) {
+    public SettingsAPIGet(String token, String urlService, Activity callerActivity) {
         this.urlService = String.valueOf(urlService);
         this.callerActivity = callerActivity;
         this.token = token;

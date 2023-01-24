@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static boolean isUserLoggedIn;
     static int didUserLogIn;
     static String token;
 
@@ -18,19 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent loginActivityIntent = new Intent(this, LoginActivity.class);
         startActivity(loginActivityIntent);
+
+
     }
 
 
     // Functions
 
-
-    // Function allows to show notification toast
-    private void notificationToast(String notification){
-        Context context = getApplicationContext();
-        CharSequence text = notification;
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
 }

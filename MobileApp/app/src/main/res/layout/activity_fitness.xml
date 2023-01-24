@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    tools:context=".FitnessActivity">
 
 
     <TextView
@@ -31,7 +31,7 @@
 
     <EditText
         android:id="@+id/date"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -41,28 +41,30 @@
         android:background="@drawable/background"
         android:layout_below="@id/title"
         android:padding="15dp"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        tools:ignore="TextFields"/>
 
     <TextView
         android:id="@+id/exercise_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/exercise"
+        android:layout_alignStart="@id/exercise"
         android:text="@string/exercise"
-        android:layout_marginStart="20dp"
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:textSize="20sp"/>
 
     <EditText
         android:id="@+id/exercise"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:hint="@string/exercise"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="50dp"
-        android:layout_below="@id/date"
+        android:layout_below="@id/title"
+        android:layout_alignParentEnd="true"
         android:padding="15dp"
         android:inputType="text"
         android:background="@drawable/background"
@@ -125,11 +127,14 @@
         android:id="@+id/check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_check_circle_24"
-        android:background="@color/white"
         android:layout_below="@id/reps"
         android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="40dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_baseline_check_circle_24"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -146,17 +151,17 @@
     <ListView
         android:id="@+id/sets"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="50dp"
         android:padding="15dp"
-        android:layout_below="@id/kg"
+        android:layout_below="@id/check"
         android:textSize="15sp"
         android:importantForAutofill="no"/>
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button"
@@ -168,7 +173,7 @@
         android:text="@string/save"/>
 
     <Button
-        android:id="@+id/new_exercise"
+        android:id="@+id/btn_new_exercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button"
