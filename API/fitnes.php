@@ -17,9 +17,9 @@ header("Expires: 0"); // Proxies.
 switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno dejanje nad virom
 {
 	case 'GET':
-		if(!empty($_GET["token"]))
+		if(!empty($_GET["token"]) & !empty($_GET["datum"]))
 		{
-			fitnes_uporabnika($_GET["token"]);
+			fitnes_uporabnika($_GET["token"], $_GET["datum"]);
 		}
 		else
 		{
@@ -35,6 +35,7 @@ switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno de
 			else
 			{
 				http_response_code(400);	// Bad Request
+
 			}
 			break;
 		
@@ -45,19 +46,20 @@ switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno de
 
 mysqli_close($zbirka);					// Sprostimo povezavo z zbirko
 
-function fitnes_uporabnika($token)
+function fitnes_uporabnika($token, $datum)
 {
 	global $zbirka;
 	$token = mysqli_escape_string($zbirka, $token);
+	$datum = mysqli_escape_string($zbirka, $datum);
 	$secret = 'sec!ReT423*&';
 	$odgovor=array();
 	// Validate token and retrieve payload
 	if(Token::validate($token,$secret)){
 		$payload = Token::getPayLoad($token,$secret);
 		$vzdevek = $payload["user_id"];
-		if(uporabnik_obstaja($vzdevek))
+		if(uporabnik_obstaja($vzdevek) & isset($datum))
 		{
-			$poizvedba="SELECT datum, vaja, seti FROM fitnes WHERE vzdevek = '$vzdevek'";
+			$poizvedba="SELECT vaja, seti FROM fitnes WHERE vzdevek = '$vzdevek' AND datum = '$datum'";
 			
 			$result=mysqli_query($zbirka, $poizvedba);
 

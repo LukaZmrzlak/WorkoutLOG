@@ -17,9 +17,9 @@ header("Expires: 0"); // Proxies.
 switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno dejanje nad virom
 {
 	case 'GET':
-		if(!empty($_GET["token"]))
+		if(!empty($_GET["token"]) & !empty($_GET["datum"]))
 		{
-			teki_uporabnika($_GET["token"]);
+			teki_uporabnika($_GET["token"], $_GET["datum"]);
 		}
 		else
 		{
@@ -45,10 +45,11 @@ switch($_SERVER["REQUEST_METHOD"])			//glede na HTTP metodo izvedemo ustrezno de
 
 mysqli_close($zbirka);					// Sprostimo povezavo z zbirko
 
-function teki_uporabnika($token)
+function teki_uporabnika($token, $datum)
 {
 	global $zbirka;
 	$token = mysqli_escape_string($zbirka, $token);
+	$datum = mysqli_escape_string($zbirka, $datum);
 	$secret = 'sec!ReT423*&';
 	$odgovor=array();
 	
@@ -56,9 +57,9 @@ function teki_uporabnika($token)
 	if(Token::validate($token,$secret)){
 		$payload = Token::getPayLoad($token,$secret);
 		$vzdevek = $payload["user_id"];
-		if(uporabnik_obstaja($vzdevek))
+		if(uporabnik_obstaja($vzdevek) & isset($datum))
 		{
-			$poizvedba="SELECT datum, casovna_dolzina, dolzina, obcutek, vreme, zapiski FROM teki WHERE vzdevek = '$vzdevek'";
+			$poizvedba="SELECT casovna_dolzina, dolzina, obcutek, vreme, zapiski FROM teki WHERE vzdevek = '$vzdevek' AND datum = '$datum'";
 			
 			$result=mysqli_query($zbirka, $poizvedba);
 

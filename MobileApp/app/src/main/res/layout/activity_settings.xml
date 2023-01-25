@@ -129,9 +129,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:layout_below="@+id/height"
-        android:background="@drawable/background"
-        android:textSize="15sp"/>
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_below="@+id/height" />
 
     <Button
         android:id="@+id/btn_save"

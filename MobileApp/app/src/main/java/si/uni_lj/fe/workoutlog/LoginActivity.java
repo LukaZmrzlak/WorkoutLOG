@@ -65,10 +65,10 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 //Check if user is already logged in
-                //if (MainActivity.isUserLoggedIn) {
-                //    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                //    return;
-                //}
+                if (MainActivity.isUserLoggedIn) {
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    return;
+                }
 
                 // Execute login process in a background
                 new AsyncTaskExecutor().execute(new Login(inputPassword, inputEmail, urlService, LoginActivity.this), new AsyncTaskExecutor.Callback<String>() {
@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(String result) {
                         Toast.makeText(LoginActivity.this, result, Toast.LENGTH_SHORT).show();
                         if (result.equals(LoginActivity.this.getResources().getString(R.string.login_successfully))) {
+                            MainActivity.isUserLoggedIn = true;
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             finish();
                         }

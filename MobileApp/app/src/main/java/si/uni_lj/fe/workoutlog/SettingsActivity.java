@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
     public static String genderTemp, ageTemp, weightTemp, heightTemp;
     private EditText etGender, etAge, etWeight, etHeight;
+    private TextView bmi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
         etAge = findViewById(R.id.age);
         etWeight = findViewById(R.id.weight);
         etHeight = findViewById(R.id.height);
+        bmi = findViewById(R.id.BMI);
 
         String token = MainActivity.token;
         String urlService = getResources().getString(R.string.URL_settings);
@@ -39,6 +42,14 @@ public class SettingsActivity extends AppCompatActivity {
                 etAge.setText(ageTemp);
                 etWeight.setText(weightTemp);
                 etHeight.setText(heightTemp);
+                String weight = etWeight.getText().toString();
+                String height = etHeight.getText().toString();
+                if(!weight.isEmpty() && !height.isEmpty()) {
+                    double weightValue = Double.parseDouble(weight);
+                    double heightValue = Double.parseDouble(height);
+                    double bmiValue = weightValue / (0.01*heightValue*0.01*heightValue);
+                    bmi.setText("BMI: " + bmiValue);
+                }
             }
         });
 
@@ -51,6 +62,12 @@ public class SettingsActivity extends AppCompatActivity {
                 String age = etAge.getText().toString();
                 String weight = etWeight.getText().toString();
                 String height = etHeight.getText().toString();
+                if(!weight.isEmpty() && !height.isEmpty()) {
+                    double weightValue = Double.parseDouble(weight);
+                    double heightValue = Double.parseDouble(height);
+                    double bmiValue = weightValue / (0.01*heightValue*0.01*heightValue);
+                    bmi.setText("BMI: " + bmiValue);
+                }
                 // Create new instance of SettingsAPIPostPut
                 SettingsAPIPostPut settingsAPIPostPut = new SettingsAPIPostPut(token, gender, age, weight, height, urlService, SettingsActivity.this);
                 AsyncTaskExecutor executor = new AsyncTaskExecutor();
@@ -64,3 +81,4 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 }
+

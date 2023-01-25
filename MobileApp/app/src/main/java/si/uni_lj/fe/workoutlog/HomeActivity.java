@@ -18,6 +18,7 @@ public class HomeActivity extends AppCompatActivity {
         configureLogoutImageButton();
         configureCardioButton();
         configureFitnessButton();
+        configureHistoryButton();
         configureSettingsImageButton();
     }
 
@@ -41,6 +42,18 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 startActivity(new Intent(HomeActivity.this, CardioActivity.class));
+            }
+        });
+    }
+
+    private void configureHistoryButton()
+    {
+        Button HistoryButton = (Button) findViewById(R.id.history);
+        HistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
             }
         });
     }
