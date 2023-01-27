@@ -1,3 +1,3 @@
 <?php
-	echo "Uporaba API-ja";
+	echo "Go to http://localhost/WorkoutLOG/API/Menu.html";
 ?>

@@ -19,7 +19,7 @@ switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo u
 		}
 		else
 		{
-			http_response_code(400);	// Če ne posredujemo vzdevka je to 'Bad Request'
+			pridobi_vse_uporabnike();	// Če ne posredujemo vzdevka je to 'Bad Request'
 		}
 		break;
 		
@@ -87,7 +87,7 @@ function pridobi_uporabnika($vzdevek)
 
 function dodaj_uporabnika()
 {
-	global $zbirka, $DEBUG;
+	global $zbirka;
 	
 	$podatki = json_decode(file_get_contents('php://input'), true);
 	
@@ -112,11 +112,7 @@ function dodaj_uporabnika()
 			else
 			{
 				http_response_code(500);	// Internal Server Error
-				
-				if($DEBUG)
-				{
-					pripravi_odgovor_napaka(mysqli_error($zbirka));
-				}
+
 			}
 		}
 		else
@@ -203,4 +199,18 @@ function izbrisi_uporabnika($vzdevek)
 		http_response_code(404);	// Not Found
 	}
 }
+
+function pridobi_vse_uporabnike()
+{
+	global $zbirka;
+	$odgovor=array();
+	$poizvedba="SELECT vzdevek, ime, priimek, email FROM vpisi";
+	$rezultat=mysqli_query($zbirka, $poizvedba);
+	while($vrstica=mysqli_fetch_assoc($rezultat)){
+		$odgovor[]=$vrstica;
+	}
+	http_response_code(200);
+	echo json_encode($odgovor);
+}
+
 ?>

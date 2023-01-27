@@ -57,4 +57,5 @@
     <string name="unexpected_error">Unexpected error!</string>
     <string name="saved_successfully">Successful save</string>
     <string name="select_date">Select date</string>
+    <string name="register_error">Register unsuccessful!</string>
 </resources>

@@ -86,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
     private void configureRegisterButton()
     {
         Button registerButton = findViewById(R.id.btn_register);

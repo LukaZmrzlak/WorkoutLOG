@@ -1,5 +1,6 @@
 RewriteEngine On 				# Vklopi 'rewriting engine'
 
+RewriteRule ^uporabniki/?$ uporabniki.php [NC,L]	
 RewriteRule ^uporabniki/(.+)/?$ uporabniki.php?vzdevek=$1 [NC,L]
 
 RewriteRule ^teki/(.+)/?$ teki.php?token=$1 [NC,L]				

@@ -50,7 +50,7 @@ public class RegisterAPI implements Callable<String> {
                 if (responseCode == 409) {
                     return callerActivity.getResources().getString(R.string.register_username_taken);
                 } else {
-                    return callerActivity.getResources().getString(R.string.login_error) + " " + responseCode;
+                    return callerActivity.getResources().getString(R.string.register_error) + " " + responseCode;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
